@@ -10,7 +10,7 @@ import (
 )
 
 type BatteryBlock struct {
-	block      *statusbar.I3Block
+	block *statusbar.I3Block
 }
 
 func (this *BatteryBlock) Init(block *statusbar.I3Block, resp *statusbar.Responder) bool {
@@ -84,7 +84,7 @@ func (this BatteryBlock) Tick() {
 			continue
 		}
 		// Deal with the contents
-		if string(rawOnline) == "1" {
+		if string(rawOnline) == "1\n" {
 			this.block.FullText += " +"
 			this.block.Color = "#02ff02"
 		}
