@@ -11,6 +11,7 @@ type I3Block struct {
 	FullText  string `json:"full_text"`
 	ShortText string `json:"short_text,omitempty"`
 	Color     string `json:"color,omitempty"`
+	Urgent    bool   `json:"urgent,omitempty"`
 	Name      string `json:"name"`
 }
 
