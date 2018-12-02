@@ -11,8 +11,10 @@ import "C"
 import (
 	"fmt"
 	"github.com/dasJ/statusbar"
+	"io/ioutil"
 	"os"
 	"os/exec"
+	"strings"
 	"unsafe"
 )
 
@@ -29,7 +31,18 @@ func (this *NotmuchBlock) Init(block *statusbar.I3Block, resp *statusbar.Respond
 	this.oldAmount = ^uint(0)
 
 	path := os.Getenv("HOME") + "/.cache/mail"
+
+	// Discover trash folders
 	query := "tag:unread"
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		return false
+	}
+	for _, f := range files {
+		if !strings.HasPrefix(f.Name(), ".") {
+			query += " and not folder:" + f.Name() + "/Trash"
+		}
+	}
 
 	// Open database
 	var c_path *C.char = C.CString(path)
