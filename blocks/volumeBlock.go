@@ -66,7 +66,6 @@ func goPulseError(c *C.char) {
 func goPulseVol(mute C.char, vol C.int) {
 	if mute == 1 {
 		volumeBlock.block.FullText = "muted"
-		volumeBlock.block.Color = "#ff0202"
 		volumeBlock.responder.Output()
 		return
 	}
