@@ -25,6 +25,7 @@ func main() {
 
 	// Initialize blocks
 	resp.AppendBlock(&blocks.VolumeBlock{})
+	resp.AppendBlock(&blocks.MemoryBlock{})
 	resp.AppendBlock(&blocks.BatteryBlock{})
 	resp.AppendBlock(&blocks.NotmuchBlock{})
 	resp.AppendBlock(&blocks.NetworkBlock{})
