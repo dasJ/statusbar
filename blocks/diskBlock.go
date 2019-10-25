@@ -29,7 +29,7 @@ func (this DiskBlock) Tick() {
 		this.block.Color = ""
 	}
 
-	this.block.FullText = *statusbar.ByteSize(stat.Bavail * uint64(stat.Bsize))
+	this.block.FullText = ByteSize(stat.Bavail * uint64(stat.Bsize))
 }
 
 func (this DiskBlock) Click(data statusbar.I3Click) {
