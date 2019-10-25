@@ -9,7 +9,7 @@ import (
 )
 
 type NetworkBlock struct {
-	block *statusbar.I3Block
+	block  *statusbar.I3Block
 	failed bool
 }
 
@@ -37,11 +37,13 @@ func (this NetworkBlock) Tick() {
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		parts := strings.Split(scanner.Text(), "\t")
+		// Only consider default routes (to 0.0.0.0)
 		if parts[1] == "00000000" {
+			iface := parts[0]
 			if this.block.FullText == "" {
-				this.block.FullText = parts[0]
-			} else {
-				this.block.FullText += " " + parts[0]
+				this.block.FullText = iface
+			} else if !strings.Contains(this.block.FullText, iface) {
+				this.block.FullText += " " + iface
 			}
 		}
 	}
