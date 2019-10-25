@@ -43,7 +43,7 @@ func (this IpBlock) Tick() {
 			ipAddress := this.GetInterfaceIp(parts[0])
 			if this.block.FullText == "" {
 				this.block.FullText = ipAddress
-			} else if !strings.Contains(this.block.FullText, ipAddress) {
+			} else {
 				this.block.FullText += " " + ipAddress
 			}
 		}

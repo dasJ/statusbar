@@ -42,7 +42,7 @@ func (this NetworkBlock) Tick() {
 			iface := parts[0]
 			if this.block.FullText == "" {
 				this.block.FullText = iface
-			} else if !strings.Contains(this.block.FullText, iface) {
+			} else {
 				this.block.FullText += " " + iface
 			}
 		}
