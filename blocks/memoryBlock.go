@@ -52,7 +52,7 @@ func (this MemoryBlock) Tick() {
 	}
 
 	// meminfo output is in kB
-	this.block.FullText = ByteSize(uint64(available * 1024))
+	this.block.FullText = *statusbar.ByteSize(uint64(available * 1024))
 }
 
 func (this MemoryBlock) Click(data statusbar.I3Click) {
