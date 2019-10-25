@@ -1,7 +1,6 @@
 package blocks
 
 import (
-	"code.cloudfoundry.org/bytefmt"
 	"fmt"
 	"github.com/dasJ/statusbar"
 	"io/ioutil"
@@ -53,7 +52,7 @@ func (this MemoryBlock) Tick() {
 	}
 
 	// meminfo output is in kB
-	this.block.FullText = bytefmt.ByteSize(uint64(available * 1024))
+	this.block.FullText = ByteSize(uint64(available * 1024))
 }
 
 func (this MemoryBlock) Click(data statusbar.I3Click) {

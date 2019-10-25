@@ -1,7 +1,6 @@
 package blocks
 
 import (
-	"code.cloudfoundry.org/bytefmt"
 	"github.com/dasJ/statusbar"
 	"syscall"
 )
@@ -30,7 +29,7 @@ func (this DiskBlock) Tick() {
 		this.block.Color = ""
 	}
 
-	this.block.FullText = bytefmt.ByteSize(stat.Bavail * uint64(stat.Bsize))
+	this.block.FullText = ByteSize(stat.Bavail * uint64(stat.Bsize))
 }
 
 func (this DiskBlock) Click(data statusbar.I3Click) {
