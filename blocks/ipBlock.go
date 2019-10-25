@@ -3,7 +3,7 @@ package blocks
 import (
 	"bufio"
 	"fmt"
-	"github.com/dasJ/statusbar"
+	"github.com/SlothOfAnarchy/statusbar"
 	"net"
 	"os"
 	"strings"

@@ -10,7 +10,7 @@ import "C"
 
 import (
 	"fmt"
-	"github.com/dasJ/statusbar"
+	"github.com/SlothOfAnarchy/statusbar"
 	"io/ioutil"
 	"os"
 	"os/exec"
