@@ -31,6 +31,7 @@ func main() {
 	resp.AppendBlock(&blocks.NotmuchBlock{})
 	resp.AppendBlock(&blocks.NetworkBlock{})
 	resp.AppendBlock(&blocks.IpBlock{})
+	resp.AppendBlock(&blocks.SsidBlock{})
 	resp.AppendBlock(&blocks.LoadBlock{})
 	resp.AppendBlock(&blocks.TempBlock{})
 	resp.AppendBlock(&blocks.DateBlock{})
