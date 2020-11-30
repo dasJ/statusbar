@@ -18,7 +18,7 @@ func main() {
 		panic(err)
 	}
 	fmt.Print(string(header))
-	fmt.Println("[") // Begin stream
+	fmt.Print("\n[") // Begin stream
 
 	// Initialize responder
 	resp := statusbar.Responder{}
