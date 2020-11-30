@@ -6,6 +6,7 @@
 pa_context *context;
 pa_mainloop *mainloop = NULL;
 int oldMute;
+int connected = 0;
 pa_cvolume oldVolume;
 char *defaultSinkName;
 
@@ -83,7 +84,12 @@ void context_state_cb(pa_context *c, void *userdata) {
 				return;
 			}
 			pa_operation_unref(o);
+			connected = 1;
 			break;
+		case PA_CONTEXT_FAILED:
+			goPulseMsg("Disconnected");
+			connected = 0;
+			reconnect();
 		default:
 			break;
 	}
@@ -115,6 +121,17 @@ char *initPulse() {
 	return "";
 }
 
+void reconnect() {
+	char *err;
+
+	if (context)
+		pa_context_unref(context);
+	if (mainloop)
+		pa_mainloop_free(mainloop);
+
+	goPulseRestart();
+}
+
 void runPulse() {
 	int ret = 0;
 
@@ -127,6 +144,9 @@ void runPulse() {
 void setVolume(char increase, int amount) {
 	pa_cvolume *newVolume;
 
+	if (!connected)
+		return;
+
 	if (increase == 1) {
 		newVolume = pa_cvolume_inc(&oldVolume, amount * ((float) PA_VOLUME_NORM / 100));
 	} else {
@@ -137,5 +157,8 @@ void setVolume(char increase, int amount) {
 }
 
 void toggleMute() {
+	if (!connected)
+		return;
+
 	pa_operation_unref(pa_context_set_sink_mute_by_name(context, defaultSinkName, !oldMute, NULL, NULL));
 }
