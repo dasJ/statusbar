@@ -1,6 +1,7 @@
 package blocks
 
 import (
+	"fmt"
 	"github.com/SlothOfAnarchy/statusbar"
 	"time"
 )
@@ -16,7 +17,8 @@ func (this *DateBlock) Init(block *statusbar.I3Block, resp *statusbar.Responder)
 
 func (this DateBlock) Tick() {
 	now := time.Now()
-	this.block.FullText = now.Format("Mon, 02.Jan 2006 15:04")
+	_, kw := now.ISOWeek()
+	this.block.FullText = fmt.Sprint("(KW", kw, ") ", now.Format("Mon, 02. Jan 2006 15:04"))
 	this.block.ShortText = now.Format("15:04")
 }
 
