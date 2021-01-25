@@ -2,7 +2,7 @@ package blocks
 
 import (
 	"fmt"
-	"github.com/dasJ/statusbar"
+	"github.com/SlothOfAnarchy/statusbar"
 	"os/exec"
 
 	//#cgo LDFLAGS: -lpulse

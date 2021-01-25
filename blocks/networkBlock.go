@@ -3,13 +3,13 @@ package blocks
 import (
 	"bufio"
 	"fmt"
-	"github.com/dasJ/statusbar"
+	"github.com/SlothOfAnarchy/statusbar"
 	"os"
 	"strings"
 )
 
 type NetworkBlock struct {
-	block *statusbar.I3Block
+	block  *statusbar.I3Block
 	failed bool
 }
 
@@ -37,11 +37,13 @@ func (this NetworkBlock) Tick() {
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		parts := strings.Split(scanner.Text(), "\t")
+		// Only consider default routes (to 0.0.0.0)
 		if parts[1] == "00000000" {
+			iface := parts[0]
 			if this.block.FullText == "" {
-				this.block.FullText = parts[0]
+				this.block.FullText = iface
 			} else {
-				this.block.FullText += " " + parts[0]
+				this.block.FullText += " " + iface
 			}
 		}
 	}

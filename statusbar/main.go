@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/dasJ/statusbar"
-	"github.com/dasJ/statusbar/blocks"
+	"github.com/SlothOfAnarchy/statusbar"
+	"github.com/SlothOfAnarchy/statusbar/blocks"
 	"os"
 	"strings"
 	"time"
@@ -25,9 +25,13 @@ func main() {
 
 	// Initialize blocks
 	resp.AppendBlock(&blocks.VolumeBlock{})
+	resp.AppendBlock(&blocks.MemoryBlock{})
+	resp.AppendBlock(&blocks.DiskBlock{})
 	resp.AppendBlock(&blocks.BatteryBlock{})
 	resp.AppendBlock(&blocks.NotmuchBlock{})
 	resp.AppendBlock(&blocks.NetworkBlock{})
+	resp.AppendBlock(&blocks.IpBlock{})
+	resp.AppendBlock(&blocks.SsidBlock{})
 	resp.AppendBlock(&blocks.LoadBlock{})
 	resp.AppendBlock(&blocks.TempBlock{})
 	resp.AppendBlock(&blocks.DateBlock{})
